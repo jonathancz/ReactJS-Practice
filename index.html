@@ -18,32 +18,26 @@
         age: 30
       }
 
-      // Arrow function
-      handleClick = (e) => {
+      handChange = (e) => {
         this.setState({
-          name: "Josh",
-          age: 20
-        });
-        console.log(e.target)
-        //console.log(this.state) // Throws error
-      } 
-
-      handleMouseOver(e){
-        console.log(e.target, e.pageX)
+          name: e.target.value
+        })
       }
 
-      handleCopy(e) {
-        console.log('Try being original for once!')
+      handleSubmit = (e) => {
+        e.preventDefault(); // Prevent page to be refreshed
+        console.log("Form submitted", this.state.name)
       }
 
       render(){
         return(
           <div className="app-content">
             <h1>Hello, World!</h1>
-            <p> My name is: { this.state.name } and I am { this.state.age }</p>
-            <button onClick={this.handleClick}>Click Me</button>
-            <button onMouseOver={this.handleMouseOver}> Hover over me</button>
-            <p onCopy={this.handleCopy}>What we think, we become</p>
+            <p> My name is: { this.state.name }</p>
+            <form onSubmit={this.handleSubmit}>
+            <input type="text" onChange={this.handChange}/>
+              <button>Submit</button>
+            </form>
           </div>
         )
       }
